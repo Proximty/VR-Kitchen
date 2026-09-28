@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class IngredientDataChecker : MonoBehaviour
 {
-    [SerializeField] private IngredientData ingredientData;
+    [SerializeField] public IngredientData ingredientData;
     [SerializeField] private Material cookedMaterial;
     [SerializeField] private Material burnedMaterial;
 
