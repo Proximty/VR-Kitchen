@@ -6,7 +6,7 @@ public class Init : MonoBehaviour
     void Start()
     {
         gameObject.GetComponent<ViewManager>().Playscene("Order display");
-        gameObject.GetComponent<ViewManager>().Playscene("Nathantestscene");
+        gameObject.GetComponent<ViewManager>().Playscene("BasicScene");
     }
 
 }
