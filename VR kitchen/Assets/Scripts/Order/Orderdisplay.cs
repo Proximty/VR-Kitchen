@@ -40,6 +40,7 @@ public class OrderStatusBoard : MonoBehaviour
     private void LoadDummyData()
     {
         // Orders aanmaken ZONDER status, maar MET ingredientIndexen
+        // 0 = ham, 1 = kaas, 2 = bacon, 3 = lettuce, 4 = tomato, 5 = cucumber, 6 = bun
         orders = new List<Order>
         {
             new Order
