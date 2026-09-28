@@ -1,19 +1,13 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 
 public class OrderStatusBoard : MonoBehaviour
 {
-    [Header("UI Containers")]
-    [SerializeField] private Transform readyContainer;      // Grid Layout Group voor Ready
-    [SerializeField] private Transform preparingContainer;  // Grid Layout Group voor Preparing
-    [SerializeField] private TextMeshProUGUI clockText;
-
-    [Header("Prefabs")]
+    [Header("UI Instellingen")]
+    [SerializeField] private Transform orderContainer; // Eén layout group/container voor de UI kaarten
     [SerializeField] private GameObject orderCardPrefab;
 
-    [Header("Order Data")]
+    [Header("Actieve Orders")]
     [SerializeField] private List<Order> orders = new List<Order>();
 
     private void Start()
@@ -22,26 +16,18 @@ public class OrderStatusBoard : MonoBehaviour
         RefreshDisplay();
     }
 
-    private void Update()
-    {
-        // Klok rechtsboven bijwerken
-        if (clockText != null)
-        {
-            clockText.text = DateTime.Now.ToString("hh:mm tt, dddd - MMMM d");
-        }
-    }
-
     public void RefreshDisplay()
     {
         // Oude UI kaarten opruimen
-        foreach (Transform child in readyContainer) Destroy(child.gameObject);
-        foreach (Transform child in preparingContainer) Destroy(child.gameObject);
+        foreach (Transform child in orderContainer)
+        {
+            Destroy(child.gameObject);
+        }
 
-        // Nieuwe kaarten aanmaken
+        // Nieuwe kaarten aanmaken op het scherm
         foreach (var order in orders)
         {
-            Transform targetContainer = (order.status == OrderStatus.Ready) ? readyContainer : preparingContainer;
-            GameObject cardObj = Instantiate(orderCardPrefab, targetContainer);
+            GameObject cardObj = Instantiate(orderCardPrefab, orderContainer);
 
             OrderCardUI cardUI = cardObj.GetComponent<OrderCardUI>();
             if (cardUI != null)
@@ -53,19 +39,65 @@ public class OrderStatusBoard : MonoBehaviour
 
     private void LoadDummyData()
     {
+        // Orders aanmaken ZONDER status, maar MET ingredientIndexen
         orders = new List<Order>
         {
-            // Ready Orders
-            new Order { id = "0259", code = "R2-39859", customerName = "Olivia R.", status = OrderStatus.Ready },
-            new Order { id = "0260", code = "R2-39860", customerName = "Daniel S.", status = OrderStatus.Ready },
-            new Order { id = "0262", code = "R2-39862", customerName = "Rachel W.", status = OrderStatus.Ready },
-            new Order { id = "0265", code = "R2-39865", customerName = "Samuel E.", status = OrderStatus.Ready },
-
-            // Preparing Orders
-            new Order { id = "0526", code = "R5-39826", customerName = "Millie C.", status = OrderStatus.Preparing },
-            new Order { id = "0547", code = "R5-39847", customerName = "Dylan V.", status = OrderStatus.Preparing },
-            new Order { id = "0589", code = "R5-39889", customerName = "Faith K.", status = OrderStatus.Preparing },
-            new Order { id = "0597", code = "R5-39897", customerName = "Alexander F.", status = OrderStatus.Preparing }
+            new Order
+            {
+                id = "0259",
+                code = "R2-39859",
+                customerName = "Olivia R.",
+                ingredientIndexes = new List<int> { 6, 0, 1, 6 } // Brood, Ham, Kaas, Brood
+            },
+            new Order
+            {
+                id = "0260",
+                code = "R2-39860",
+                customerName = "Daniel S.",
+                ingredientIndexes = new List<int> { 6, 2, 3, 4, 6 }
+            },
+            new Order
+            {
+                id = "0262",
+                code = "R2-39862",
+                customerName = "Rachel W.",
+                ingredientIndexes = new List<int> { 6, 1, 5, 6 }
+            },
+            new Order
+            {
+                id = "0265",
+                code = "R2-39865",
+                customerName = "Samuel E.",
+                ingredientIndexes = new List<int> { 6, 0, 2, 3, 6 }
+            }
         };
+    }
+
+    /// <summary>
+    /// Controleert of de ingrediënten van de speler kloppen met de geselecteerde order.
+    /// </summary>
+    public bool CheckOrder(Order orderToCheck, List<int> playerRecipe)
+    {
+        List<int> required = orderToCheck.ingredientIndexes;
+
+        // 1. Controleer of het aantal ingrediënten klopt
+        if (playerRecipe.Count != required.Count)
+        {
+            Debug.Log("Fout: Aantal ingrediënten klopt niet!");
+            return false;
+        }
+
+        // 2. Controleer de volgorde van de indexen
+        for (int i = 0; i < required.Count; i++)
+        {
+            if (playerRecipe[i] != required[i])
+            {
+                Debug.Log($"Fout op positie {i}: Verwacht index {required[i]}, maar kreeg {playerRecipe[i]}");
+                return false;
+            }
+        }
+
+        Debug.Log("Order Klopt Helemaal!");
+        return true;
     }
 }
