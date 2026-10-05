@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 8e405073fd4219c4fa0cfafc74032d0e, type: 3}
-  m_Name: Burger
+  m_Name: Bun
   m_EditorClassIdentifier: 
-  Ingedient: 2
-  edible: 0
+  Ingedient: 6
+  edible: 100
