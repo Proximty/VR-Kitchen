@@ -25,7 +25,7 @@
 .gradle/
 ExportedObj/
 .consulo/
-
+.index.lock
 # Visual Studio / Mono projectbestanden
 *.csproj
 *.unityproj
