@@ -12,13 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e405073fd4219c4fa0cfafc74032d0e, type: 3}
   m_Name: Burger
   m_EditorClassIdentifier: 
-  Ingedient:
-  - Ham
-  - Cheese
-  - Egg
-  - Lettuce
-  - Tomato
-  - Cucumber
-  - Picles
-  - Bread
+  Ingedient: 2
   edible: 0

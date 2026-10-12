@@ -169,7 +169,7 @@
       "source": "builtin",
       "dependencies": {
         "com.unity.render-pipelines.core": "17.6.0",
-        "com.unity.searcher": "4.9.5",
+        "com.unity.searcher": "4.9.3",
         "com.unity.graph-authoring": "1.0.0"
       }
     },
@@ -257,7 +257,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.compositionlayers": {
-      "version": "2.6.0",
+      "version": "2.5.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {
@@ -291,7 +291,7 @@
       "url": "https://packages.unity.com"
     },
     "com.unity.xr.interaction.toolkit": {
-      "version": "3.6.1",
+      "version": "3.6.0",
       "depth": 0,
       "source": "registry",
       "dependencies": {

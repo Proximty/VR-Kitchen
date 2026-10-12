@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class IngredientData : ScriptableObject
 {
-    [SerializeField] private string[] Ingedient = {"Ham", "Cheese", "Egg", "Lettuce", "Tomato", "Cucumber", "Picles", "Bread"};
+    [SerializeField] public int Ingedient;
     //edible is done with precentage (for example 0 = raw meat, 100 = cooked meat, 200 = burned meat)
-    [SerializeField] private float edible;
+    [SerializeField] public float edible;
+
+    [SerializeField] public bool isCutable;
+    [SerializeField] public bool onCuttingBoard;
+    [SerializeField] public GameObject cutableObject;
 }
