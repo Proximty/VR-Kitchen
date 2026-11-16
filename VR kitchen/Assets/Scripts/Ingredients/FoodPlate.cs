@@ -8,7 +8,6 @@ public class FoodPlate : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        //add ingredient on the plate
         if (other.gameObject.GetComponent<IngredientDataChecker>() != null)
         {
             ingredients.Add(other.gameObject.GetComponent<IngredientDataChecker>().ingredientData.Ingedient);
@@ -19,7 +18,6 @@ public class FoodPlate : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        //remove ingredient on the plate
         if (other.gameObject.GetComponent<IngredientDataChecker>() != null)
         {
             ingredients.Remove(other.gameObject.GetComponent<IngredientDataChecker>().ingredientData.Ingedient);
