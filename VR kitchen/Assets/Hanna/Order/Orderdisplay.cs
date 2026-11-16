@@ -71,7 +71,7 @@ public class OrderStatusBoard : MonoBehaviour
         orders = new List<Order>();
 
         // 1. Zoek aanwezige customers in de scene
-        CustomerFoodCheck[] foundCustomers = FindObjectsByType<CustomerFoodCheck>(FindObjectsSortMode.None);
+        CustomerFoodCheck[] foundCustomers = FindObjectsByType<CustomerFoodCheck>();
         List<CustomerFoodCheck> customerList = new List<CustomerFoodCheck>();
         if (foundCustomers != null)
         {

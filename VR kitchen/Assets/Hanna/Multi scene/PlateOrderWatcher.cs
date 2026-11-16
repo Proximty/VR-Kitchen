@@ -22,7 +22,7 @@ public class PlateOrderWatcher : MonoBehaviour
     {
         if (targetPlate == null)
         {
-            targetPlate = GetComponent<FoodPlate>() ?? FindFirstObjectByType<FoodPlate>();
+            targetPlate = GetComponent<FoodPlate>() ?? FindAnyObjectByType<FoodPlate>();
         }
     }
 
@@ -112,7 +112,7 @@ public class PlateOrderWatcher : MonoBehaviour
         }
 
         // 4. Laat eventuele klant vertrekken
-        CustomerController customer = FindFirstObjectByType<CustomerController>();
+        CustomerController customer = FindAnyObjectByType<CustomerController>();
         if (customer != null)
         {
             customer.CompleteCustomerOrder();
