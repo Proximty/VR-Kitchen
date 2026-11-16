@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e405073fd4219c4fa0cfafc74032d0e, type: 3}
   m_Name: Lettuce
   m_EditorClassIdentifier: 
-  Ingedient: 2
+  Ingedient: 3
   edible: 0
+  isCutable: 0
+  onCuttingBoard: 0
+  cutableObject: {fileID: 0}
