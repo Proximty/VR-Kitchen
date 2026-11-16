@@ -2174,6 +2174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerFoodCheck
   customerID: 2
+  assignedOrder: {fileID: 0}
   splinePathFollower: {fileID: 788214053}
   waitingSpotTransform: {fileID: 1742082537}
   startDelay: 0
@@ -2603,6 +2604,7 @@ MonoBehaviour:
   id: 
   code: 
   customerName: 
+  customerIndex: 1
   ingredientIndexes: 
 --- !u!4 &1002609008
 Transform:
@@ -2651,6 +2653,7 @@ MonoBehaviour:
   id: 
   code: 
   customerName: 
+  customerIndex: 1
   ingredientIndexes: 00000000i
 --- !u!4 &1024271833
 Transform:
@@ -3125,6 +3128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerFoodCheck
   customerID: 1
+  assignedOrder: {fileID: 0}
   splinePathFollower: {fileID: 1307582644}
   waitingSpotTransform: {fileID: 749139407}
   startDelay: 0.5
@@ -3455,14 +3459,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OrderStatusBoard
   orderContainer: {fileID: 269930575}
   orderCardPrefab: {fileID: 269930576}
-  autoGenerateOrders: 1
-  initialOrderCount: 20
-  replenishOrdersOnComplete: 1
-  startingOrderId: 101
-  minCustomIngredients: 1
-  maxCustomIngredients: 4
-  mixPresetsWithRandom: 1
-  customCustomerNames: []
+  orderCount: 20
   orders:
   - {fileID: 1024271832}
   - {fileID: 0}

@@ -3,11 +3,15 @@ using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.Splines;
 
-public class CustomerOrder : MonoBehaviour
+public class CustomerFoodCheck : MonoBehaviour
 {
     [Header("Customer Settings")]
-    [Tooltip("Set to 1 for Customer 1, or 2 for Customer 2")]
+    [Tooltip("Index nummer van de customer (bijv. 1 voor Customer 1, 2 voor Customer 2)")]
     [SerializeField] private int customerID = 1;
+
+    [Header("Gekoppelde Order")]
+    [Tooltip("De gegenereerde order die aan deze customer is gekoppeld")]
+    [SerializeField] public Order assignedOrder;
 
     [Header("Spline & Waiting Spot")]
     [SerializeField] private SplineAnimate splinePathFollower;
@@ -26,12 +30,33 @@ public class CustomerOrder : MonoBehaviour
     private bool hasReachedWaitingSpot = false;
     private bool isOrderFulfilled = false;
 
+    public int CustomerID
+    {
+        get => customerID;
+        set => customerID = value;
+    }
+
+    /// <summary>
+    /// Plakt een gegenereerde order aan deze customer en synchroniseert het indexnummer.
+    /// </summary>
+    public void AssignOrder(Order order)
+    {
+        assignedOrder = order;
+        if (order != null)
+        {
+            order.customerIndex = customerID;
+        }
+    }
+
     private void Start()
     {
+        // Zorg dat we correct geabonneerd zijn op de OrderManager
+        SubscribeToOrderManager();
+
         if (splinePathFollower != null)
         {
             // Automatically calculate where the waiting spot Transform sits on the spline (0.0 to 1.0)
-            if (waitingSpotTransform != null && splinePathFollower.Container != null)
+            if (waitingSpotTransform != null && splinePathFollower.Container != null && splinePathFollower.Container.Spline != null)
             {
                 Vector3 localSpotPos = splinePathFollower.Container.transform.InverseTransformPoint(waitingSpotTransform.position);
                 SplineUtility.GetNearestPoint(splinePathFollower.Container.Spline, (float3)localSpotPos, out _, out waitingSpotProgress);
@@ -54,7 +79,10 @@ public class CustomerOrder : MonoBehaviour
         }
 
         hasStartedWalking = true;
-        splinePathFollower.Play();
+        if (splinePathFollower != null)
+        {
+            splinePathFollower.Play();
+        }
         SetWalkingAnimation(true);
     }
 
@@ -76,10 +104,7 @@ public class CustomerOrder : MonoBehaviour
 
     private void OnEnable()
     {
-        if (OrderManager.orderManager != null)
-        {
-            OrderManager.orderManager.OnOrderFulfilled += HandleOrderFulfilled;
-        }
+        SubscribeToOrderManager();
     }
 
     private void OnDisable()
@@ -87,6 +112,15 @@ public class CustomerOrder : MonoBehaviour
         if (OrderManager.orderManager != null)
         {
             OrderManager.orderManager.OnOrderFulfilled -= HandleOrderFulfilled;
+        }
+    }
+
+    private void SubscribeToOrderManager()
+    {
+        if (OrderManager.orderManager != null)
+        {
+            OrderManager.orderManager.OnOrderFulfilled -= HandleOrderFulfilled;
+            OrderManager.orderManager.OnOrderFulfilled += HandleOrderFulfilled;
         }
     }
 
@@ -116,4 +150,9 @@ public class CustomerOrder : MonoBehaviour
             customerAnimator.SetBool(walkingBoolName, isWalking);
         }
     }
+}
+
+// Behoud CustomerOrder alias voor backwards compatibility
+public class CustomerOrder : CustomerFoodCheck
+{
 }
