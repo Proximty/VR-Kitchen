@@ -2097,6 +2097,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4203450089861158726, guid: 7061b7fdeb6dada48b64b7248e496ed7, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b920b834a26731b4fb0b29cee47db017, type: 2}
     - target: {fileID: 4252089310870630794, guid: 7061b7fdeb6dada48b64b7248e496ed7, type: 3}
       propertyPath: m_Name
       value: Customer 2
@@ -2111,7 +2115,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4254199175960506470, guid: 7061b7fdeb6dada48b64b7248e496ed7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -26.4
+      value: -11.67
       objectReference: {fileID: 0}
     - target: {fileID: 4254199175960506470, guid: 7061b7fdeb6dada48b64b7248e496ed7, type: 3}
       propertyPath: m_LocalRotation.w
@@ -2144,8 +2148,54 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4252089310870630794, guid: 7061b7fdeb6dada48b64b7248e496ed7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 788214052}
+    - targetCorrespondingSourceObject: {fileID: 4252089310870630794, guid: 7061b7fdeb6dada48b64b7248e496ed7, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 788214053}
   m_SourcePrefab: {fileID: 100100000, guid: 7061b7fdeb6dada48b64b7248e496ed7, type: 3}
+--- !u!1 &788214051 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4252089310870630794, guid: 7061b7fdeb6dada48b64b7248e496ed7, type: 3}
+  m_PrefabInstance: {fileID: 788214050}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &788214052
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788214051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f7b0e2f5dee294db670e8037119f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomerFoodCheck
+--- !u!114 &788214053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788214051}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a074d529cf945029ef7cf40540c9df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Splines::UnityEngine.Splines.SplineAnimate
+  m_Target: {fileID: 175102132}
+  m_PlayOnAwake: 1
+  m_LoopMode: 1
+  m_Method: 0
+  m_Duration: 1
+  m_MaxSpeed: 35.554367
+  m_EasingMode: 0
+  m_AlignmentMode: 1
+  m_ObjectForwardAxis: 2
+  m_ObjectUpAxis: 1
+  m_StartOffset: 0
 --- !u!1001 &857193009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2969,31 +3019,31 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: 482a32825d683884580a7d8b8cfb38b7, type: 2}
     - target: {fileID: 246552163576763905, guid: 8bded30d20f5cb144953391075716220, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 22.93507
+      value: 18.54
       objectReference: {fileID: 0}
     - target: {fileID: 246552163576763905, guid: 8bded30d20f5cb144953391075716220, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.092410974
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 246552163576763905, guid: 8bded30d20f5cb144953391075716220, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -13.2366
+      value: -11.612407
       objectReference: {fileID: 0}
     - target: {fileID: 246552163576763905, guid: 8bded30d20f5cb144953391075716220, type: 3}
       propertyPath: m_LocalRotation.w
-      value: -0.30212313
+      value: 0.70329434
       objectReference: {fileID: 0}
     - target: {fileID: 246552163576763905, guid: 8bded30d20f5cb144953391075716220, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.00003268356
+      value: -0.00000001710761
       objectReference: {fileID: 0}
     - target: {fileID: 246552163576763905, guid: 8bded30d20f5cb144953391075716220, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.9532686
+      value: 0.7108989
       objectReference: {fileID: 0}
     - target: {fileID: 246552163576763905, guid: 8bded30d20f5cb144953391075716220, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.00082192034
+      value: 0.000000017292585
       objectReference: {fileID: 0}
     - target: {fileID: 246552163576763905, guid: 8bded30d20f5cb144953391075716220, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -3018,6 +3068,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 251784283771150365, guid: 8bded30d20f5cb144953391075716220, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1307582644}
+    - targetCorrespondingSourceObject: {fileID: 251784283771150365, guid: 8bded30d20f5cb144953391075716220, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1307582645}
   m_SourcePrefab: {fileID: 100100000, guid: 8bded30d20f5cb144953391075716220, type: 3}
 --- !u!1 &1307582643 stripped
 GameObject:
@@ -3047,6 +3100,18 @@ MonoBehaviour:
   m_ObjectForwardAxis: 2
   m_ObjectUpAxis: 1
   m_StartOffset: 0
+--- !u!114 &1307582645
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307582643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f7b0e2f5dee294db670e8037119f12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::CustomerFoodCheck
 --- !u!1001 &1316747349
 PrefabInstance:
   m_ObjectHideFlags: 0
