@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using UnityEngine;
 
 /// <summary>
@@ -14,8 +14,33 @@ public class OrderStatusBoard : MonoBehaviour
     [SerializeField] private Transform orderContainer; // Layout group/container voor de UI kaarten
     [SerializeField] private GameObject orderCardPrefab;
 
+    [Header("Order Generatie")]
+    [SerializeField] private int orderCount = 20; // Aantal gegenereerde orders
+
     [Header("Actieve Orders")]
     [SerializeField] private List<Order> orders = new List<Order>();
+
+    // Originele ingrediëntenlijsten van de orders (ongewijzigd teruggezet)
+    // 0 = ham, 1 = kaas, 2 = burger/vlees, 3 = lettuce, 4 = tomato, 5 = cucumber, 6 = bun
+    private readonly List<List<int>> originalRecipes = new List<List<int>>
+    {
+        new List<int> { 6, 0, 1, 6 },       // Brood, Ham, Kaas, Brood
+        new List<int> { 6, 2, 3, 4, 6 },    // Brood, Burger, Sla, Tomaat, Brood
+        new List<int> { 6, 1, 5, 6 },       // Brood, Kaas, Komkommer, Brood
+        new List<int> { 6, 0, 2, 3, 6 }     // Brood, Ham, Burger, Sla, Brood
+    };
+
+    // Verschillende klantennamen
+    private readonly string[] customerNames = new string[]
+    {
+        "Olivia R.", "Daniel S.", "Rachel W.", "Samuel E.",
+        "Emma B.", "Liam K.", "Noah V.", "Sophie M.",
+        "Lucas D.", "Mila J.", "Finn B.", "Tess W.",
+        "Sem K.", "Julia P.", "Milan H.", "Zoë L.",
+        "Levi M.", "Sara D.", "Jesse B.", "Lotte V.",
+        "Bram K.", "Eva N.", "Daan S.", "Lieke R.",
+        "Luuk M.", "Sanne T.", "Thijs G.", "Fleur K."
+    };
 
     private void Awake()
     {
@@ -29,11 +54,50 @@ public class OrderStatusBoard : MonoBehaviour
 
     private void Start()
     {
-        LoadDummyData();
+        GenerateOrders();
         RefreshDisplay();
 
         // Synchroniseer het eerste recept met OrderManager
         SyncCurrentOrderWithManager();
+    }
+
+    /// <summary>
+    /// Genereert orders met verschillende namen, ordernummers en codes,
+    /// gebruikmakend van de originele ingrediëntenlijst.
+    /// </summary>
+    private void GenerateOrders()
+    {
+        orders = new List<Order>();
+
+        int startId = 259;
+        int startCodeNumber = 39859;
+
+        for (int i = 0; i < orderCount; i++)
+        {
+            // Kies een naam uit de namenlijst
+            string name = customerNames[i % customerNames.Length];
+
+            // Maak een oplopend ordernummer (bijv. 0259, 0260, ...)
+            string id = (startId + i).ToString("D4");
+
+            // Maak een unieke order code (bijv. R2-39859, R2-39860, ...)
+            string code = $"R2-{startCodeNumber + i}";
+
+            // Kies een van de originele ingrediëntenlijsten
+            List<int> recipe = new List<int>(originalRecipes[i % originalRecipes.Count]);
+
+            // Maak het Order component aan op een child GameObject
+            GameObject orderObj = new GameObject($"Order_{id}");
+            orderObj.transform.SetParent(this.transform);
+
+            Order newOrder = orderObj.AddComponent<Order>();
+            newOrder.id = id;
+            newOrder.code = code;
+            newOrder.customerName = name;
+            newOrder.ingredientIndexes = recipe;
+
+            orders.Add(newOrder);
+        }
     }
 
     public void RefreshDisplay()
@@ -69,8 +133,15 @@ public class OrderStatusBoard : MonoBehaviour
     {
         if (orders.Count > 0)
         {
-            Debug.Log($"[OrderStatusBoard] Order {orders[0].id} voltooid.");
+            Order completed = orders[0];
+            Debug.Log($"[OrderStatusBoard] Order {completed.id} voltooid.");
             orders.RemoveAt(0);
+
+            if (completed != null && completed.gameObject != null)
+            {
+                Destroy(completed.gameObject);
+            }
+
             RefreshDisplay();
 
             // Stel het volgende recept in via Nathan's publieke velden
@@ -100,42 +171,6 @@ public class OrderStatusBoard : MonoBehaviour
                 OrderManager.orderManager.orderIngredientAmount = current.ingredientIndexes.Count;
             }
         }
-    }
-
-    private void LoadDummyData()
-    {
-        // 0 = ham, 1 = kaas, 2 = burger/vlees, 3 = lettuce, 4 = tomato, 5 = cucumber, 6 = bun
-        orders = new List<Order>
-        {
-            new Order
-            {
-                id = "0259",
-                code = "R2-39859",
-                customerName = "Olivia R.",
-                ingredientIndexes = new List<int> { 6, 0, 1, 6 } // Brood, Ham, Kaas, Brood
-            },
-            new Order
-            {
-                id = "0260",
-                code = "R2-39860",
-                customerName = "Daniel S.",
-                ingredientIndexes = new List<int> { 6, 2, 3, 4, 6 } // Brood, Burger, Sla, Tomaat, Brood
-            },
-            new Order
-            {
-                id = "0262",
-                code = "R2-39862",
-                customerName = "Rachel W.",
-                ingredientIndexes = new List<int> { 6, 1, 5, 6 } // Brood, Kaas, Komkommer, Brood
-            },
-            new Order
-            {
-                id = "0265",
-                code = "R2-39865",
-                customerName = "Samuel E.",
-                ingredientIndexes = new List<int> { 6, 0, 2, 3, 6 } // Brood, Ham, Burger, Sla, Brood
-            }
-        };
     }
 
     /// <summary>

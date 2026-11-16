@@ -2589,7 +2589,7 @@ MonoBehaviour:
   id: 
   code: 
   customerName: 
-  ingredientIndexes: 
+  ingredientIndexes: 00000000i
 --- !u!4 &1024271833
 Transform:
   m_ObjectHideFlags: 0
@@ -3366,7 +3366,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::OrderStatusBoard
   orderContainer: {fileID: 269930575}
   orderCardPrefab: {fileID: 269930576}
-  orders: []
+  autoGenerateOrders: 1
+  initialOrderCount: 20
+  replenishOrdersOnComplete: 1
+  startingOrderId: 101
+  minCustomIngredients: 1
+  maxCustomIngredients: 4
+  mixPresetsWithRandom: 1
+  customCustomerNames: []
+  orders:
+  - {fileID: 1024271832}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!4 &1471514088
 Transform:
   m_ObjectHideFlags: 0

@@ -8,18 +8,21 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Manager.unity
     guid: 7ab428895c452f641b91bdc6e70f6d83
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Order Display.unity
     guid: 5bfa0461ee5a71b4c963dfa50fcfcfd5
   - enabled: 0
     path: Assets/Scenes/BasicScene.unity
     guid: 4e9fef26e6adb88479ad1b9834a32d94
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/NathanTestScene.unity
     guid: 93d52b1e8c4ed4b41ac5ccee0db9d47d
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 55daccc09a3b69647bbab145b54a3ab3
+  - enabled: 1
+    path: Assets/Casper/Kitchen Modulars.unity
+    guid: 94576a131488dad448560071288bcda2
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}
