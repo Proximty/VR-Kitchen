@@ -79,18 +79,6 @@ public class KitchenManager : MonoBehaviour
 
     private void Update()
     {
-        // Sneltoetsen voor testen tijdens development
-        if (enableKeyboardShortcuts)
-        {
-            if (Input.GetKeyDown(nextKitchenKey))
-            {
-                NextKitchen();
-            }
-            else if (Input.GetKeyDown(shuffleKitchenKey))
-            {
-                ShuffleKitchen();
-            }
-        }
 
         // Optionele automatische timer
         if (autoRotateInterval > 0f)
