@@ -2107,31 +2107,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4254199175960506470, guid: 7061b7fdeb6dada48b64b7248e496ed7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 20.952215
+      value: 18.54
       objectReference: {fileID: 0}
     - target: {fileID: 4254199175960506470, guid: 7061b7fdeb6dada48b64b7248e496ed7, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.010000008
+      value: 0.09
       objectReference: {fileID: 0}
     - target: {fileID: 4254199175960506470, guid: 7061b7fdeb6dada48b64b7248e496ed7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -11.67
+      value: -11.612407
       objectReference: {fileID: 0}
     - target: {fileID: 4254199175960506470, guid: 7061b7fdeb6dada48b64b7248e496ed7, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.70329434
       objectReference: {fileID: 0}
     - target: {fileID: 4254199175960506470, guid: 7061b7fdeb6dada48b64b7248e496ed7, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0.00000001710761
       objectReference: {fileID: 0}
     - target: {fileID: 4254199175960506470, guid: 7061b7fdeb6dada48b64b7248e496ed7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.7108989
       objectReference: {fileID: 0}
     - target: {fileID: 4254199175960506470, guid: 7061b7fdeb6dada48b64b7248e496ed7, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.000000017292585
       objectReference: {fileID: 0}
     - target: {fileID: 4254199175960506470, guid: 7061b7fdeb6dada48b64b7248e496ed7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -2173,6 +2173,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f7b0e2f5dee294db670e8037119f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerFoodCheck
+  customerID: 2
+  splinePathFollower: {fileID: 788214053}
+  waitingSpotTransform: {fileID: 1742082537}
+  startDelay: 0
+  customerAnimator: {fileID: 788214054}
+  walkingBoolName: IsWalking
+  orderFulfilledBoolName: OrderFulfilled
 --- !u!114 &788214053
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2196,6 +2203,11 @@ MonoBehaviour:
   m_ObjectForwardAxis: 2
   m_ObjectUpAxis: 1
   m_StartOffset: 0
+--- !u!95 &788214054 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 4203450089861158726, guid: 7061b7fdeb6dada48b64b7248e496ed7, type: 3}
+  m_PrefabInstance: {fileID: 788214050}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &857193009
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3112,6 +3124,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59f7b0e2f5dee294db670e8037119f12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::CustomerFoodCheck
+  customerID: 1
+  splinePathFollower: {fileID: 1307582644}
+  waitingSpotTransform: {fileID: 749139407}
+  startDelay: 0.5
+  customerAnimator: {fileID: 1307582646}
+  walkingBoolName: IsWalking
+  orderFulfilledBoolName: OrderFulfilled
+--- !u!95 &1307582646 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 157163990932059447, guid: 8bded30d20f5cb144953391075716220, type: 3}
+  m_PrefabInstance: {fileID: 1307582642}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1316747349
 PrefabInstance:
   m_ObjectHideFlags: 0
