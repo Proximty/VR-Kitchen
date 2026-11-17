@@ -21,14 +21,27 @@ public class OrderStatusBoard : MonoBehaviour
     [Header("Actieve Orders")]
     [SerializeField] private List<Order> orders = new List<Order>();
 
-    // Originele ingrediëntenlijsten van de orders (ongewijzigd)
+    // Originele recepten met gerechtnaam en ingrediëntenlijsten
     // 0 = ham, 1 = kaas, 2 = burger/vlees, 3 = lettuce, 4 = tomato, 5 = cucumber, 6 = bun
-    private readonly List<List<int>> originalRecipes = new List<List<int>>
+    [System.Serializable]
+    public class RecipeDefinition
     {
-        new List<int> { 6, 0, 1, 6 },       // Brood, Ham, Kaas, Brood
-        new List<int> { 6, 2, 3, 4, 6 },    // Brood, Burger, Sla, Tomaat, Brood
-        new List<int> { 6, 1, 5, 6 },       // Brood, Kaas, Komkommer, Brood
-        new List<int> { 6, 0, 2, 3, 6 }     // Brood, Ham, Burger, Sla, Brood
+        public string dishName;
+        public List<int> ingredientIndexes;
+
+        public RecipeDefinition(string dishName, List<int> ingredientIndexes)
+        {
+            this.dishName = dishName;
+            this.ingredientIndexes = ingredientIndexes;
+        }
+    }
+
+    private readonly List<RecipeDefinition> originalRecipes = new List<RecipeDefinition>
+    {
+        new RecipeDefinition("Tosti Ham & Kaas", new List<int> { 6, 0, 1, 6 }),           // Brood, Ham, Kaas, Brood
+        new RecipeDefinition("Classic Burger", new List<int> { 6, 2, 3, 4, 6 }),          // Brood, Burger, Sla, Tomaat, Brood
+        new RecipeDefinition("Broodje Kaas & Komkommer", new List<int> { 6, 1, 5, 6 }),    // Brood, Kaas, Komkommer, Brood
+        new RecipeDefinition("Club Burger", new List<int> { 6, 0, 2, 3, 6 })              // Brood, Ham, Burger, Sla, Brood
     };
 
     // Verschillende klantennamen
@@ -119,8 +132,10 @@ public class OrderStatusBoard : MonoBehaviour
             // Maak een unieke order code (bijv. R2-39859, R2-39860, ...)
             string code = $"R2-{startCodeNumber + i}";
 
-            // Kies een van de originele ingrediëntenlijsten
-            List<int> recipe = new List<int>(originalRecipes[i % originalRecipes.Count]);
+            // Kies een recept en de bijbehorende gerechtnaam
+            RecipeDefinition recipeDef = originalRecipes[i % originalRecipes.Count];
+            List<int> recipe = new List<int>(recipeDef.ingredientIndexes);
+            string dishName = recipeDef.dishName;
 
             // Maak het Order component aan op een child GameObject
             GameObject orderObj = new GameObject($"Order_{id}");
@@ -130,6 +145,7 @@ public class OrderStatusBoard : MonoBehaviour
             newOrder.id = id;
             newOrder.code = code;
             newOrder.customerName = name;
+            newOrder.dishName = dishName;
             newOrder.customerIndex = assignedCustomerIndex;
             newOrder.ingredientIndexes = recipe;
 
@@ -137,7 +153,7 @@ public class OrderStatusBoard : MonoBehaviour
             if (i < customerList.Count && customerList[i] != null)
             {
                 customerList[i].AssignOrder(newOrder);
-                Debug.Log($"[OrderStatusBoard] Order {newOrder.id} gekoppeld aan Customer {customerList[i].CustomerID} ({customerList[i].name})");
+                Debug.Log($"[OrderStatusBoard] Order {newOrder.id} ({newOrder.dishName}) gekoppeld aan Customer {customerList[i].CustomerID} ({customerList[i].name})");
             }
 
             orders.Add(newOrder);
@@ -211,7 +227,7 @@ public class OrderStatusBoard : MonoBehaviour
         {
             Order completed = orders[0];
             int completedCustomerIndex = (completed != null) ? completed.customerIndex : 1;
-            Debug.Log($"[OrderStatusBoard] Order {completed?.id} voltooid voor Customer Index {completedCustomerIndex} ({completed?.customerName}).");
+            Debug.Log($"[OrderStatusBoard] Order {completed?.id} ({completed?.dishName}) voltooid voor Customer Index {completedCustomerIndex} ({completed?.customerName}).");
 
             orders.RemoveAt(0);
 
