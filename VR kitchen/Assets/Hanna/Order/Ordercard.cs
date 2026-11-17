@@ -27,7 +27,11 @@ public class OrderCardUI : MonoBehaviour
         Canvas parentCanvas = GetComponentInParent<Canvas>();
         if (parentCanvas == null)
         {
-            Canvas canvas = gameObject.GetComponent<Canvas>() ?? gameObject.AddComponent<Canvas>();
+            Canvas canvas = GetComponent<Canvas>();
+            if (canvas == null)
+            {
+                canvas = gameObject.AddComponent<Canvas>();
+            }
             canvas.renderMode = RenderMode.WorldSpace;
         }
     }
