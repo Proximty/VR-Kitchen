@@ -8,10 +8,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Manager.unity
     guid: 7ab428895c452f641b91bdc6e70f6d83
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Order Display.unity
     guid: 5bfa0461ee5a71b4c963dfa50fcfcfd5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BasicScene.unity
     guid: 4e9fef26e6adb88479ad1b9834a32d94
   - enabled: 0
@@ -20,6 +20,15 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 55daccc09a3b69647bbab145b54a3ab3
+  - enabled: 1
+    path: Assets/Casper/Kitchen Modulars.unity
+    guid: 94576a131488dad448560071288bcda2
+  - enabled: 1
+    path: Assets/Casper/Casper Scene.unity
+    guid: 492ab5db88c0c914f8b951c10d6f7ed2
+  - enabled: 1
+    path: Assets/Casper/EndScene.unity
+    guid: e70563df12a4c1e4481c459243d13c90
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: bfa1182bd221b4ca89619141f66f1260, type: 2}
     Unity.XR.WindowsMR.Settings: {fileID: 11400000, guid: dc5a169419fa04987b057f65238cf3ba, type: 2}
@@ -29,3 +38,4 @@ EditorBuildSettings:
     com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 908d62378b8205449861e5838a18a596, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 4b3de149e50ea0c4f8ad04c79b9f12ec, type: 2}
     com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 57540e2e0b4a7824690fb726612c8c2b, type: 2}
+    xr.sdk.mock-hmd.settings: {fileID: 11400000, guid: 250cd1329fbff0e41a20620572b6e12a, type: 2}
