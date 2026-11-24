@@ -38,9 +38,9 @@ public class OrderStatusBoard : MonoBehaviour
 
     private readonly List<RecipeDefinition> originalRecipes = new List<RecipeDefinition>
     {
-        new RecipeDefinition("Tosti Ham & Kaas", new List<int> { 6, 0, 1, 6 }),           // Brood, Ham, Kaas, Brood
+        new RecipeDefinition("Ham & Cheese Burger", new List<int> { 6, 0, 1, 6 }),        // Brood, Ham, Kaas, Brood
         new RecipeDefinition("Classic Burger", new List<int> { 6, 2, 3, 4, 6 }),          // Brood, Burger, Sla, Tomaat, Brood
-        new RecipeDefinition("Broodje Kaas & Komkommer", new List<int> { 6, 1, 5, 6 }),    // Brood, Kaas, Komkommer, Brood
+        new RecipeDefinition("Fresh Cheeseburger", new List<int> { 6, 1, 5, 6 }),         // Brood, Kaas, Komkommer, Brood
         new RecipeDefinition("Club Burger", new List<int> { 6, 0, 2, 3, 6 })              // Brood, Ham, Burger, Sla, Brood
     };
 

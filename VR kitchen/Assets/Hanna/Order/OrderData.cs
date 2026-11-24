@@ -8,7 +8,7 @@ public class Order: MonoBehaviour
     public string id;
     public string code;
     public string customerName;
-    public string dishName; // Naam van het gerecht (bijv. "Classic Burger", "Tosti Ham & Kaas")
+    public string dishName; // Naam van het gerecht (bijv. "Classic Burger", "Ham & Cheese Burger")
     public int customerIndex = 1; // Index van de customer waar deze order bij hoort
 
     // Indexen uit IngredientData (bijv. 6 = Brood, 0 = Ham, 1 = Kaas)
