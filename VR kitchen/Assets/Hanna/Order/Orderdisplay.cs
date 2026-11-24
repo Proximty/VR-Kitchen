@@ -21,6 +21,8 @@ public class OrderStatusBoard : MonoBehaviour
     [Header("Actieve Orders")]
     [SerializeField] private List<Order> orders = new List<Order>();
 
+    public Order CurrentOrder => (orders != null && orders.Count > 0) ? orders[0] : null;
+
     // Originele recepten met gerechtnaam en ingrediëntenlijsten
     // 0 = ham, 1 = kaas, 2 = burger/vlees, 3 = lettuce, 4 = tomato, 5 = cucumber, 6 = bun
     [System.Serializable]
@@ -73,6 +75,8 @@ public class OrderStatusBoard : MonoBehaviour
 
         // Synchroniseer het eerste recept met OrderManager
         SyncCurrentOrderWithManager();
+
+        ScoreManager.StartOrder();
     }
 
     /// <summary>
@@ -252,6 +256,8 @@ public class OrderStatusBoard : MonoBehaviour
 
             // Stel het volgende recept in via Nathan's publieke velden
             SyncCurrentOrderWithManager();
+
+            ScoreManager.StartOrder();
 
             // Hussel de keuken direct na de order
             if (KitchenManager.Instance != null)

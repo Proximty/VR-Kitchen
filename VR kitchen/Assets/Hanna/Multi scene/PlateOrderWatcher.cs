@@ -54,25 +54,24 @@ public class PlateOrderWatcher : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Controleert of de ingrediënten op het bord overeenkomen met Nathan's OrderManager.
-    /// </summary>
     private void CheckIfOrderComplete()
     {
+        if (isHandlingCompletion) return;
         if (OrderManager.orderManager == null || OrderManager.orderManager.orderIngredients == null)
             return;
 
         List<int> required = OrderManager.orderManager.orderIngredients;
         if (required.Count == 0) return;
 
-        if (currentIngredientsOnPlate.Count < required.Count) return;
-
-        // Controleer of alle benodigde ingrediënten aanwezig zijn
+        // Tel aantal juiste ingrediënten en aantal broodjes
         List<int> remaining = new List<int>(required);
         int matched = 0;
+        int bunCount = 0;
 
         foreach (int item in currentIngredientsOnPlate)
         {
+            if (item == 6) bunCount++; // Brood
+
             if (remaining.Contains(item))
             {
                 remaining.Remove(item);
@@ -80,16 +79,23 @@ public class PlateOrderWatcher : MonoBehaviour
             }
         }
 
-        if (matched == required.Count && currentIngredientsOnPlate.Count == required.Count)
+        // Als alles klopt OF als de burger is afgesloten met een 2e broodje
+        bool isPerfect = (matched == required.Count && currentIngredientsOnPlate.Count == required.Count);
+        bool isClosed = (bunCount >= 2 && currentIngredientsOnPlate.Count >= 3);
+
+        if (isPerfect || isClosed)
         {
-            Debug.Log("[PlateOrderWatcher] Order is compleet! Keuken wordt nu gehusseld.");
-            OnOrderDone();
+            OnOrderDone(matched, required.Count);
         }
     }
 
-    private void OnOrderDone()
+    private void OnOrderDone(int matched, int totalRequired)
     {
         isHandlingCompletion = true;
+
+        // Bereken score op basis van juiste ingrediënten en tijd
+        float timeTaken = Time.time - ScoreManager.orderStartTime;
+        ScoreManager.AddScore(matched, totalRequired, timeTaken);
 
         // 1. Verwijder de klaargemaakte ingrediënten van het bord
         foreach (GameObject obj in objectsOnPlate)

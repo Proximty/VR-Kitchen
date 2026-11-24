@@ -106,4 +106,13 @@ public class OrderCardUI : MonoBehaviour
             }
         }
     }
+
+    private void Update()
+    {
+        if (orderIdText != null && CurrentOrder != null)
+        {
+            int sec = Mathf.FloorToInt(Mathf.Max(0f, Time.time - ScoreManager.orderStartTime));
+            orderIdText.text = $"#{CurrentOrder.id} | Score: {ScoreManager.totalScore} | {sec}s";
+        }
+    }
 }
