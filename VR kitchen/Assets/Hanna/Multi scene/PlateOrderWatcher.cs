@@ -40,6 +40,16 @@ public class PlateOrderWatcher : MonoBehaviour
             }
             CheckIfOrderComplete();
         }
+        else if (other.gameObject.name.ToLower().Contains("frie") || other.gameObject.name.ToLower().Contains("fry"))
+        {
+            // Automatisch herkennen als friet (index 7)
+            currentIngredientsOnPlate.Add(7);
+            if (!objectsOnPlate.Contains(other.gameObject))
+            {
+                objectsOnPlate.Add(other.gameObject);
+            }
+            CheckIfOrderComplete();
+        }
     }
 
     private void OnTriggerExit(Collider other)
@@ -50,6 +60,11 @@ public class PlateOrderWatcher : MonoBehaviour
         if (checker != null && checker.ingredientData != null)
         {
             currentIngredientsOnPlate.Remove(checker.ingredientData.Ingedient);
+            objectsOnPlate.Remove(other.gameObject);
+        }
+        else if (other.gameObject.name.ToLower().Contains("frie") || other.gameObject.name.ToLower().Contains("fry"))
+        {
+            currentIngredientsOnPlate.Remove(7);
             objectsOnPlate.Remove(other.gameObject);
         }
     }
@@ -79,23 +94,25 @@ public class PlateOrderWatcher : MonoBehaviour
             }
         }
 
-        // Als alles klopt OF als de burger is afgesloten met een 2e broodje
+        // 1. Exacte match (bijv. frietjes {7}, of complete burger {6, 0, 1, 6}, of menu {6, 2, 3, 4, 6, 7})
         bool isPerfect = (matched == required.Count && currentIngredientsOnPlate.Count == required.Count);
+
+        // 2. Burger afgesloten met 2e broodje
         bool isClosed = (bunCount >= 2 && currentIngredientsOnPlate.Count >= 3);
 
         if (isPerfect || isClosed)
         {
-            OnOrderDone(matched, required.Count);
+            OnOrderDone();
         }
     }
 
-    private void OnOrderDone(int matched, int totalRequired)
+    private void OnOrderDone()
     {
         isHandlingCompletion = true;
 
-        // Bereken score op basis van juiste ingrediënten en tijd
+        // Bereken score op basis van geleverde items (Burger = 100, Fries = 50) en tijd
         float timeTaken = Time.time - ScoreManager.orderStartTime;
-        ScoreManager.AddScore(matched, totalRequired, timeTaken);
+        ScoreManager.AddScore(currentIngredientsOnPlate, timeTaken);
 
         // 1. Verwijder de klaargemaakte ingrediënten van het bord
         foreach (GameObject obj in objectsOnPlate)

@@ -43,7 +43,9 @@ public class OrderStatusBoard : MonoBehaviour
         new RecipeDefinition("Ham & Cheese Burger", new List<int> { 6, 0, 1, 6 }),        // Brood, Ham, Kaas, Brood
         new RecipeDefinition("Classic Burger", new List<int> { 6, 2, 3, 4, 6 }),          // Brood, Burger, Sla, Tomaat, Brood
         new RecipeDefinition("Fresh Cheeseburger", new List<int> { 6, 1, 5, 6 }),         // Brood, Kaas, Komkommer, Brood
-        new RecipeDefinition("Club Burger", new List<int> { 6, 0, 2, 3, 6 })              // Brood, Ham, Burger, Sla, Brood
+        new RecipeDefinition("Club Burger", new List<int> { 6, 0, 2, 3, 6 }),             // Brood, Ham, Burger, Sla, Brood
+        new RecipeDefinition("French Fries", new List<int> { 7 }),                        // Frietjes
+        new RecipeDefinition("Classic Burger & Fries", new List<int> { 6, 2, 3, 4, 6, 7 }) // Burger met Friet
     };
 
     // Verschillende klantennamen

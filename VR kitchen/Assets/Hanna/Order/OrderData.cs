@@ -29,6 +29,7 @@ public class Order: MonoBehaviour
             case 4: return "Tomaat";
             case 5: return "Komkommer";
             case 6: return "Brood";
+            case 7: return "Fries";
             default: return $"Ingrediënt {index}";
         }
     }
